@@ -1,6 +1,6 @@
 package ru.timofey.NauJava.service;
 
-import ru.timofey.NauJava.entities.Track;
+import ru.timofey.NauJava.entity.Track;
 
 import java.util.List;
 

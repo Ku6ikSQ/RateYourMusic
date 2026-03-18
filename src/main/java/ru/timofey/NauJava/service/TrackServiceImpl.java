@@ -3,7 +3,7 @@ package ru.timofey.NauJava.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.timofey.NauJava.repository.TrackRepository;
-import ru.timofey.NauJava.entities.Track;
+import ru.timofey.NauJava.entity.Track;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;

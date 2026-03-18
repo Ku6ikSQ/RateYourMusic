@@ -1,4 +1,4 @@
-package ru.timofey.NauJava.entities;
+package ru.timofey.NauJava.entity;
 
 import jakarta.persistence.*;
 
