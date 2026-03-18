@@ -1,4 +1,4 @@
-package ru.timofey.NauJava.repository;
+package ru.timofey.NauJava.repository.custom.review;
 
 import ru.timofey.NauJava.entity.Review;
 import java.util.List;
