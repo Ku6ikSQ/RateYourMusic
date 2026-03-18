@@ -1,4 +1,4 @@
-package ru.timofey.NauJava.repository;
+package ru.timofey.NauJava.repository.custom.album;
 
 import ru.timofey.NauJava.entity.Album;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ru.timofey.NauJava.repository;
+package ru.timofey.NauJava.repository.custom.album;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
