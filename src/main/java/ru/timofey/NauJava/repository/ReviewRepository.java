@@ -2,7 +2,7 @@ package ru.timofey.NauJava.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import ru.timofey.NauJava.entities.Review;
+import ru.timofey.NauJava.entity.Review;
 
 import java.util.List;
 

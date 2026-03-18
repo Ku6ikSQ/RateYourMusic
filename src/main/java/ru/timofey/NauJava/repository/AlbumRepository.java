@@ -1,7 +1,7 @@
 package ru.timofey.NauJava.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.timofey.NauJava.entities.Album;
+import ru.timofey.NauJava.entity.Album;
 
 import java.util.List;
 

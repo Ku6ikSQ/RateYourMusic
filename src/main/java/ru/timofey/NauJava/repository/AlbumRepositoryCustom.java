@@ -1,6 +1,6 @@
 package ru.timofey.NauJava.repository;
 
-import ru.timofey.NauJava.entities.Album;
+import ru.timofey.NauJava.entity.Album;
 import java.util.List;
 
 public interface AlbumRepositoryCustom {
