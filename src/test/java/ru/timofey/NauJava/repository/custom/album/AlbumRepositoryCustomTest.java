@@ -1,19 +1,24 @@
 package ru.timofey.NauJava.repository.custom.album;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.transaction.annotation.Transactional;
 import ru.timofey.NauJava.entity.Album;
 import ru.timofey.NauJava.entity.Artist;
 import ru.timofey.NauJava.entity.Genre;
 import ru.timofey.NauJava.repository.AlbumRepository;
 import ru.timofey.NauJava.repository.ArtistRepository;
 import ru.timofey.NauJava.repository.GenreRepository;
+import ru.timofey.NauJava.repository.ReviewRepository;
 
 import java.util.List;
 
 @SpringBootTest
+@ActiveProfiles("test")
 class AlbumRepositoryCustomTest {
 
     @Autowired
@@ -27,6 +32,17 @@ class AlbumRepositoryCustomTest {
 
     @Autowired
     private AlbumRepository albumRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
+
+    @BeforeEach
+    void setUp() {
+        reviewRepository.deleteAll();
+        albumRepository.deleteAll();
+        artistRepository.deleteAll();
+        genreRepository.deleteAll();
+    }
 
     @Test
     void testFindByGenreNameAndReleaseYearBetween() {
