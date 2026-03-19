@@ -2,14 +2,15 @@ package ru.timofey.NauJava.service.track;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.timofey.NauJava.repository.TrackRepository;
 import ru.timofey.NauJava.entity.Track;
+import ru.timofey.NauJava.repository.TrackRepository;
+
+import java.util.Optional;
 
 @Service
 public class TrackServiceImpl implements TrackService {
 
     private final TrackRepository trackRepository;
-    private long nextId = 1; // счетчик для id
 
     @Autowired
     public TrackServiceImpl(TrackRepository trackRepository) {
@@ -17,31 +18,31 @@ public class TrackServiceImpl implements TrackService {
     }
 
     @Override
-    public void createTrack(String title, String author, int duration) {
+    public void createTrack(String title, int durationSeconds) {
         Track newTrack = new Track();
-        newTrack.setId(nextId++); // авто-генерация id
         newTrack.setTitle(title);
-        newTrack.setAuthor(author);
-        newTrack.setDuration(duration);
-        trackRepository.create(newTrack);
+        newTrack.setDurationSeconds(durationSeconds);
+        trackRepository.save(newTrack);
     }
 
     @Override
     public Track findById(Long id) {
-        return trackRepository.read(id);
+        Optional<Track> trackOpt = trackRepository.findById(id);
+        return trackOpt.orElse(null);
     }
 
     @Override
     public void deleteById(Long id) {
-        trackRepository.delete(id);
+        trackRepository.deleteById(id);
     }
 
     @Override
     public void renameTrack(Long id, String newTitle) {
-        Track existingTrack = trackRepository.read(id);
-        if (existingTrack != null) {
-            existingTrack.setTitle(newTitle);
-            trackRepository.update(existingTrack);
+        Optional<Track> trackOpt = trackRepository.findById(id);
+        if (trackOpt.isPresent()) {
+            Track track = trackOpt.get();
+            track.setTitle(newTitle);
+            trackRepository.save(track);
         }
     }
 }
