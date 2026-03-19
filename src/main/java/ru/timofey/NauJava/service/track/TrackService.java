@@ -7,4 +7,5 @@ public interface TrackService {
     Track findById(Long id);
     void deleteById(Long id);
     void renameTrack(Long id, String newTitle);
+    String getTrackAuthor(Long trackId);
 }
