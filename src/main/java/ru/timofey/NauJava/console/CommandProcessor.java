@@ -2,8 +2,8 @@ package ru.timofey.NauJava.console;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.timofey.NauJava.service.track.TrackService;
 import ru.timofey.NauJava.entity.Track;
+import ru.timofey.NauJava.service.track.TrackService;
 
 @Component
 public class CommandProcessor {
@@ -21,11 +21,10 @@ public class CommandProcessor {
             switch (cmd[0].toLowerCase()) {
 
                 case "create" -> {
-                    // create <title> <author> <duration>
+                    // create <title> <duration>
                     String title = cmd[1];
-                    String author = cmd[2];
-                    int duration = Integer.parseInt(cmd[3]);
-                    trackService.createTrack(title, author, duration);
+                    int duration = Integer.parseInt(cmd[2]);
+                    trackService.createTrack(title, duration);
                     System.out.println("Трек успешно добавлен!");
                 }
 
@@ -34,8 +33,9 @@ public class CommandProcessor {
                     Long id = Long.valueOf(cmd[1]);
                     Track track = trackService.findById(id);
                     if (track != null) {
+                        String author = trackService.getTrackAuthor(id);
                         System.out.printf("Найден трек: id=%d, title=%s, author=%s, duration=%d%n",
-                                track.getId(), track.getTitle(), track.getAuthor(), track.getDuration());
+                                track.getId(), track.getTitle(), author, track.getDurationSeconds());
                     } else {
                         System.out.println("Трек не найден.");
                     }
