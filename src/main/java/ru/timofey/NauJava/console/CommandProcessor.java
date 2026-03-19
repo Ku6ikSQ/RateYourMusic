@@ -2,7 +2,7 @@ package ru.timofey.NauJava.console;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ru.timofey.NauJava.service.TrackService;
+import ru.timofey.NauJava.service.track.TrackService;
 import ru.timofey.NauJava.entity.Track;
 
 import java.util.List;
