@@ -66,4 +66,11 @@ public class TrackServiceImpl implements TrackService {
         trackRepository.findAll().forEach(tracks::add);
         return tracks;
     }
+
+    public String getTrackAuthor(Long trackId) {
+        Track track = trackRepository.findById(trackId).orElse(null);
+        if (track == null || track.getAlbum() == null || track.getAlbum().getArtist() == null)
+            return "unknown";
+        return track.getAlbum().getArtist().getStageName();
+    }
 }
