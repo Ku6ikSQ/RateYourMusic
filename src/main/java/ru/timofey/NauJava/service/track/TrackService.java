@@ -1,4 +1,4 @@
-package ru.timofey.NauJava.service;
+package ru.timofey.NauJava.service.track;
 
 import ru.timofey.NauJava.entity.Track;
 
