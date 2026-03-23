@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Albums</title>
+    <meta charset="UTF-8">
+    <style>
+        table { border: 1px solid black; border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid black; padding: 8px; text-align: left; }
+        img { max-width: 100px; }
+    </style>
+</head>
+<body>
+
+<h1>Список альбомов</h1>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Артист</th>
+        <th>Жанр</th>
+        <th>Год выпуска</th>
+        <th>Описание</th>
+        <th>Обложка</th>
+    </tr>
+
+    <tr th:each="album : ${albums}">
+        <td th:text="${album.id}"></td>
+        <td th:text="${album.title}"></td>
+        <td th:text="${album.artist.stageName}"></td>
+        <td th:text="${album.genre.name}"></td>
+        <td th:text="${album.releaseYear}"></td>
+        <td th:text="${album.description}"></td>
+        <td><img th:src="${album.coverUrl}" alt="Cover"></td>
+    </tr>
+
+</table>
+
+</body>
+</html>
