@@ -1,4 +1,4 @@
-package ru.timofey.NauJava.controller;
+package ru.timofey.NauJava.controller.review;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
