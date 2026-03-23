@@ -9,12 +9,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/albums/custom")
-public class AlbumCustomController {
+public class AlbumCustomControllerRest {
 
     private final AlbumRepository albumRepository;
 
     @Autowired
-    public AlbumCustomController(AlbumRepository albumRepository) {
+    public AlbumCustomControllerRest(AlbumRepository albumRepository) {
         this.albumRepository = albumRepository;
     }
 
