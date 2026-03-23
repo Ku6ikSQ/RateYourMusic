@@ -9,11 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/reviews/custom")
-public class ReviewCustomController {
+public class ReviewCustomControllerRest {
     private final ReviewRepository reviewRepository;
 
     @Autowired
-    public ReviewCustomController(ReviewRepository reviewRepository) {
+    public ReviewCustomControllerRest(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
     }
 
