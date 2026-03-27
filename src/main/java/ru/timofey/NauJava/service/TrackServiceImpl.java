@@ -6,12 +6,13 @@ import ru.timofey.NauJava.repository.TrackRepository;
 import ru.timofey.NauJava.entities.Track;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class TrackServiceImpl implements TrackService {
 
     private final TrackRepository trackRepository;
-    private long nextId = 1; // счетчик для id
+    private final AtomicLong nextId = new AtomicLong(1); // счетчик для id
 
     @Autowired
     public TrackServiceImpl(TrackRepository trackRepository) {
@@ -21,7 +22,7 @@ public class TrackServiceImpl implements TrackService {
     @Override
     public void createTrack(String title, String author, int duration) {
         Track newTrack = new Track();
-        newTrack.setId(nextId++); // авто-генерация id
+        newTrack.setId(nextId.getAndIncrement());
         newTrack.setTitle(title);
         newTrack.setAuthor(author);
         newTrack.setDuration(duration);
