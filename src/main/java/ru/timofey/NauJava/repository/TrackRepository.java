@@ -27,6 +27,11 @@ public class TrackRepository implements CrudRepository<Track, Long> {
     }
 
     @Override
+    public List<Track> readAll() {
+        return tracks.stream().toList();
+    }
+
+    @Override
     public void update(Track track) {
         for (int i = 0; i < tracks.size(); i++) {
             if (tracks.get(i).getId().equals(track.getId())) {

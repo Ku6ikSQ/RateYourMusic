@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.timofey.NauJava.repository.TrackRepository;
 import ru.timofey.NauJava.entities.Track;
 
+import java.util.List;
+
 @Service
 public class TrackServiceImpl implements TrackService {
 
@@ -43,5 +45,10 @@ public class TrackServiceImpl implements TrackService {
             existingTrack.setTitle(newTitle);
             trackRepository.update(existingTrack);
         }
+    }
+
+    @Override
+    public List<Track> findAll() {
+        return trackRepository.readAll();
     }
 }
