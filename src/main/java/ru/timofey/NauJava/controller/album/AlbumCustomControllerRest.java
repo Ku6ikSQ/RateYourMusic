@@ -1,0 +1,40 @@
+package ru.timofey.NauJava.controller.album;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import ru.timofey.NauJava.entity.Album;
+import ru.timofey.NauJava.exception.album.AlbumNotFoundException;
+import ru.timofey.NauJava.repository.AlbumRepository;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/albums/custom")
+public class AlbumCustomControllerRest {
+
+    private final AlbumRepository albumRepository;
+
+    @Autowired
+    public AlbumCustomControllerRest(AlbumRepository albumRepository) {
+        this.albumRepository = albumRepository;
+    }
+
+    @GetMapping
+    public List<Album> getByGenreAndYear(
+            @RequestParam Long genreId,
+            @RequestParam Integer startYear,
+            @RequestParam Integer endYear
+    ) {
+        List<Album> albums = albumRepository.findByGenre_IdAndReleaseYearBetween(
+                genreId, startYear, endYear
+        );
+
+        if (albums.isEmpty()) {
+            throw new AlbumNotFoundException(
+                    "Альбомы для жанра с id " + genreId + " и года выпуска " + startYear + "-" + endYear + " не найдены"
+            );
+        }
+
+        return albums;
+    }
+}
