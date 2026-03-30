@@ -7,3 +7,4 @@
 | `task1`        | Spring framework           |
 | `task2`        | Базы данных и ORM Hiberate |
 | `task3`        | Spring WEB, Rest           |
+| `task4`        | Spring Security            |
