@@ -134,12 +134,13 @@ public class CommandProcessor {
         Track track = trackService.findById(id);
 
         if (track != null) {
+            String author = trackService.getTrackAuthor(track.getId());
             System.out.printf(
                     "Найден трек: id=%d, title=%s, author=%s, duration=%d%n",
                     track.getId(),
                     track.getTitle(),
-                    track.getAuthor(),
-                    track.getDuration()
+                    author,
+                    track.getDurationSeconds()
             );
         } else {
             System.out.println("Трек не найден.");
@@ -172,14 +173,16 @@ public class CommandProcessor {
         if (tracks.isEmpty()) {
             System.out.println("Список треков пуст.");
         } else {
-            tracks.forEach(track ->
-                    System.out.printf(
-                            "id=%d, title=%s, author=%s, duration=%d%n",
-                            track.getId(),
-                            track.getTitle(),
-                            track.getAuthor(),
-                            track.getDuration()
-                    )
+            tracks.forEach(track -> {
+                        String author = trackService.getTrackAuthor(track.getId());
+                        System.out.printf(
+                                "id=%d, title=%s, author=%s, duration=%d%n",
+                                track.getId(),
+                                track.getTitle(),
+                                author,
+                                track.getDurationSeconds()
+                        );
+                    }
             );
         }
     }
