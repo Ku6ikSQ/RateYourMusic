@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import ru.timofey.NauJava.console.CommandProcessor;
 
 import java.util.Scanner;
 
 @Configuration
+@Profile("!test")
 public class ConsoleConfig {
 
     @Autowired
