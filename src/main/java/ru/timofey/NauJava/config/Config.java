@@ -9,7 +9,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
-import ru.timofey.NauJava.entities.Track;
+import ru.timofey.NauJava.entity.Track;
 
 @Configuration
 public class Config {
