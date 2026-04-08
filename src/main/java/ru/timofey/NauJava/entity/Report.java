@@ -12,7 +12,7 @@ public class Report {
     @Column(name = "report_status")
     private ReportStatus status;
 
-    @Column
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     public Long getId() {
