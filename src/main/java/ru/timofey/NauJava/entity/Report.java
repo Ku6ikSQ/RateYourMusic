@@ -10,7 +10,7 @@ public class Report {
     private Long id;
 
     @Column(name = "report_status")
-    private ReportStatus reportStatus;
+    private ReportStatus status;
 
     @Column
     private String content;
@@ -23,12 +23,12 @@ public class Report {
         this.id = id;
     }
 
-    public ReportStatus getReportStatus() {
-        return reportStatus;
+    public ReportStatus getStatus() {
+        return status;
     }
 
-    public void setReportStatus(ReportStatus reportStatus) {
-        this.reportStatus = reportStatus;
+    public void setStatus(ReportStatus status) {
+        this.status = status;
     }
 
     public String getContent() {
