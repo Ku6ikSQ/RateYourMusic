@@ -54,8 +54,8 @@ public class ReportService {
     }
 
     @Async
-    public CompletableFuture<Void> generateReportAsync(Long reportId) {
-        return CompletableFuture.runAsync(() -> {
+    public void generateReportAsync(Long reportId) {
+        CompletableFuture.runAsync(() -> {
             long startTime = System.currentTimeMillis();
             Report report = reportRepository.findById(reportId).orElseThrow();
 
@@ -84,7 +84,7 @@ public class ReportService {
                 context.setVariable("trackTime", trackTaskElapsed);
                 context.setVariable("totalTime", System.currentTimeMillis() - startTime);
 
-                String htmlContent = templateEngine.process("report_template", context);
+                String htmlContent = templateEngine.process("report/report", context);
 
                 report.setContent(htmlContent);
                 report.setStatus(ReportStatus.COMPLETED);
