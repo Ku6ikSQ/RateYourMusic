@@ -12,9 +12,11 @@ import java.util.Scanner;
 @Configuration
 @Profile("!test")
 public class ConsoleConfig {
+    private final CommandProcessor commandProcessor;
 
-    @Autowired
-    private CommandProcessor commandProcessor;
+    public ConsoleConfig(CommandProcessor commandProcessor) {
+        this.commandProcessor = commandProcessor;
+    }
 
     @Bean
     public CommandLineRunner commandScanner() {
