@@ -21,18 +21,24 @@ public class ConsoleConfig {
     @Bean
     public CommandLineRunner commandScanner() {
         return args -> {
-            try (Scanner scanner = new Scanner(System.in)) {
-                System.out.println("Введите команду. 'exit' для выхода.");
-                while (true) {
-                    System.out.print("> ");
-                    String input = scanner.nextLine();
-                    if ("exit".equalsIgnoreCase(input.trim())) {
-                        System.out.println("Выход из программы...");
-                        break;
+            Thread consoleThread = new Thread(() -> {
+                try (Scanner scanner = new Scanner(System.in)) {
+                    System.out.println("Введите команду. 'exit' для выхода.");
+                    while (!Thread.currentThread().isInterrupted()) {
+                        System.out.print("> ");
+                        if (!scanner.hasNextLine()) break;
+                        String input = scanner.nextLine();
+                        if ("exit".equalsIgnoreCase(input.trim())) {
+                            System.out.println("Выход из программы...");
+                            break;
+                        }
+                        commandProcessor.processCommand(input);
                     }
-                    commandProcessor.processCommand(input);
                 }
-            }
+            });
+            consoleThread.setDaemon(true);
+            consoleThread.setName("console-scanner");
+            consoleThread.start();
         };
     }
 }
