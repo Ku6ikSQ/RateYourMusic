@@ -11,4 +11,6 @@ public interface TrackService {
     void renameTrack(Long id, String newTitle);
     String getTrackAuthor(Long trackId);
     List<Track> findAll();
+    List<Track> findFirst(int limit);
+    long count();
 }

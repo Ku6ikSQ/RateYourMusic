@@ -28,7 +28,7 @@
     </tbody>
 </table>
 
-<h2>Список треков</h2>
+<h2>Список треков <span th:if="${trackCount > tracks.size()}">(первые <span th:text="${tracks.size()}"></span> из <span th:text="${trackCount}"></span>)</span></h2>
 <ul>
     <li th:each="track : ${tracks}" th:text="${track.title}">Название трека</li>
 </ul>

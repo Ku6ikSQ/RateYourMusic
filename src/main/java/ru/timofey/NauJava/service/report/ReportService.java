@@ -66,9 +66,13 @@ public class ReportService {
                 Thread userThread = new Thread(() -> usersCount.set(userRepository.count()));
                 userThread.start();
 
+                AtomicLong tracksCount = new AtomicLong();
                 AtomicReference<List<Track>> tracksList = new AtomicReference<>();
                 long trackTaskStart = System.currentTimeMillis();
-                Thread trackThread = new Thread(() -> tracksList.set(trackService.findAll()));
+                Thread trackThread = new Thread(() -> {
+                    tracksCount.set(trackService.count());
+                    tracksList.set(trackService.findFirst(100));
+                });
                 trackThread.start();
 
                 userThread.join();
@@ -81,7 +85,7 @@ public class ReportService {
                 context.setVariable("userCount", usersCount.get());
                 context.setVariable("userTime", userTaskElapsed);
                 context.setVariable("tracks", tracksList.get());
-                context.setVariable("trackCount", tracksList.get().size());
+                context.setVariable("trackCount", tracksCount.get());
                 context.setVariable("trackTime", trackTaskElapsed);
                 context.setVariable("totalTime", System.currentTimeMillis() - startTime);
 

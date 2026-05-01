@@ -1,6 +1,7 @@
 package ru.timofey.NauJava.service.track;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.timofey.NauJava.repository.TrackRepository;
@@ -65,5 +66,15 @@ public class TrackServiceImpl implements TrackService {
         List<Track> tracks = new ArrayList<>();
         trackRepository.findAll().forEach(tracks::add);
         return tracks;
+    }
+
+    @Override
+    public List<Track> findFirst(int limit) {
+        return trackRepository.findAll(PageRequest.of(0, limit)).getContent();
+    }
+
+    @Override
+    public long count() {
+        return trackRepository.count();
     }
 }
