@@ -6,4 +6,5 @@ import ru.timofey.NauJava.entity.User;
 
 @RepositoryRestResource
 public interface UserRepository extends CrudRepository<User, Long> {
+    boolean existsByUsername(String username);
 }
