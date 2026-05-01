@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 import ru.timofey.NauJava.entity.Track;
 
 @RepositoryRestResource
-@Repository
 public interface TrackRepository extends CrudRepository<Track, Long> {
 }
