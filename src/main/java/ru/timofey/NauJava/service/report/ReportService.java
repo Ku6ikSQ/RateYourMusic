@@ -7,6 +7,9 @@ import org.thymeleaf.context.Context;
 import ru.timofey.NauJava.entity.Report;
 import ru.timofey.NauJava.entity.ReportStatus;
 import ru.timofey.NauJava.entity.Track;
+import ru.timofey.NauJava.exception.report.ReportGenerationException;
+import ru.timofey.NauJava.exception.report.ReportNotFoundException;
+import ru.timofey.NauJava.exception.report.ReportNotReadyException;
 import ru.timofey.NauJava.repository.ReportRepository;
 import ru.timofey.NauJava.repository.UserRepository;
 import ru.timofey.NauJava.service.track.TrackService;
@@ -43,13 +46,13 @@ public class ReportService {
     }
 
     public String getContent(Long id) {
-        return reportRepository.findById(id)
-                .map(report -> {
-                    if (report.getStatus() == ReportStatus.CREATED) return "Отчет еще формируется...";
-                    if (report.getStatus() == ReportStatus.ERROR) return "Ошибка при формировании отчета";
-                    return report.getContent();
-                })
-                .orElse("Отчет не найден");
+        Report report = reportRepository.findById(id)
+                .orElseThrow(() -> new ReportNotFoundException(id));
+
+        if (report.getStatus() == ReportStatus.CREATED) throw new ReportNotReadyException(id);
+        if (report.getStatus() == ReportStatus.ERROR) throw new ReportGenerationException(id);
+
+        return report.getContent();
     }
 
     public void generateReportAsync(Long reportId) {
