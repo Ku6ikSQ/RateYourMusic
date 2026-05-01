@@ -1,4 +1,4 @@
-package ru.timofey.NauJava.controller;
+package ru.timofey.NauJava.controller.album;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-class AlbumCustomControllerRestTest {
+public class AlbumControllerTest {
 
     @LocalServerPort
     private int port;
