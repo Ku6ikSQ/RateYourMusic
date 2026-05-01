@@ -2,10 +2,11 @@
 
 ## Структура git
 
-| Название ветки | Задание по лекции          |
-|----------------|----------------------------|
-| `task1`        | Spring framework           |
-| `task2`        | Базы данных и ORM Hiberate |
-| `task3`        | Spring WEB, Rest           |
-| `task4`        | Spring Security            |
-| `task5`        | Многопоточность            |
+| Название ветки | Задание по лекции               |
+|----------------|---------------------------------|
+| `task1`        | Spring framework                |
+| `task2`        | Базы данных и ORM Hiberate      |
+| `task3`        | Spring WEB, Rest                |
+| `task4`        | Spring Security                 |
+| `task5`        | Многопоточность                 |
+| `task6`        | Автоматизированное тестирование |
