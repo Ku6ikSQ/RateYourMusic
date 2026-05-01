@@ -1,5 +1,6 @@
 package ru.timofey.NauJava.config.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,12 @@ import ru.timofey.NauJava.repository.UserRepository;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    @Value("${app.admin.username}")
+    private String adminUsername;
+
+    @Value("${app.admin.password}")
+    private String adminPassword;
+
     @Bean
     public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -25,13 +32,13 @@ public class SecurityConfig {
     @Bean
     public CommandLineRunner initAdmin(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-            if (userRepository.findByUsername("admin").isEmpty()) {
+            if (userRepository.findByUsername(adminUsername).isEmpty()) {
                 User admin = new User();
-                admin.setUsername("admin");
-                admin.setPassword(passwordEncoder.encode("admin"));
+                admin.setUsername(adminUsername);
+                admin.setPassword(passwordEncoder.encode(adminPassword));
                 admin.setRole(Role.ADMIN);
                 userRepository.save(admin);
-                System.out.println("--- Администратор создан: admin/admin ---");
+                System.out.println("--- Администратор создан: " + adminUsername + " ---");
             }
         };
     }
