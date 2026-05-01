@@ -1,7 +1,6 @@
 package ru.timofey.NauJava.service.report;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -53,7 +52,6 @@ public class ReportService {
                 .orElse("Отчет не найден");
     }
 
-    @Async
     public void generateReportAsync(Long reportId) {
         CompletableFuture.runAsync(() -> {
             long startTime = System.currentTimeMillis();
