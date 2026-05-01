@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Отчет</title>
+</head>
+<body>
+<h1>Статистика системы</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Параметр</th>
+        <th>Значение</th>
+        <th>Время (мс)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Зарегистрировано пользователей</td>
+        <td th:text="${userCount}">0</td>
+        <td th:text="${userTime}">0</td>
+    </tr>
+    <tr>
+        <td>Количество треков</td>
+        <td th:text="${trackCount}">0</td>
+        <td th:text="${trackTime}">0</td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Список треков</h2>
+<ul>
+    <li th:each="track : ${tracks}" th:text="${track.title}">Название трека</li>
+</ul>
+
+<p>
+    <strong>Общее время формирования: </strong>
+    <span th:text="${totalTime}">0</span> мс
+</p>
+</body>
+</html>
